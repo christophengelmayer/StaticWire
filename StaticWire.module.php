@@ -44,7 +44,10 @@ class StaticWire extends Process {
 
     public function build($selector = '/')
     {
-        $this->iteratePagetree($this->wire('pages')->get($selector));
+        foreach ($this->languages as $language) {
+            $this->languages->setLanguage($language);
+            $this->iteratePagetree($this->wire('pages')->get($selector));
+        }
     }
 
     public function getBuildPath()
