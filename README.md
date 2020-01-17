@@ -55,5 +55,3 @@ Currently this module has the following limitations:
 ## Alternatives
 
 If you need a much more advanced solution please have a look at [Ryan Cramer](http://directory.processwire.com/developers/ryan-cramer/)s wonderful [ProCache](https://modules.processwire.com/modules/pro-cache/) module.
-
-Copyright 2020 by Christoph Engelmayer
