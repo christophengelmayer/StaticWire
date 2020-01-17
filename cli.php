@@ -1,5 +1,8 @@
 <?php
-namespace ProcessWire;
-include("index.php");
+namespace StaticWire;
 
-$modules->get('StaticWire')->build('/', true);
+include(getcwd() . '/index.php');
+
+$module = $modules->getModule('StaticWire', ['noPermissionCheck' => true]);
+echo "Build path: " . $module->getBuildPath() . "\n";
+$module->build('/', true);
