@@ -29,7 +29,7 @@ class StaticWire extends Process {
     protected function iteratePagetree($page)
     {
         $this->convertToHtml($page);
-        foreach ($page->children as $child) {
+        foreach ($page->children('include=hidden') as $child) {
             $this->iteratePagetree($child);
         }
     }
