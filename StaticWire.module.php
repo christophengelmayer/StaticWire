@@ -30,7 +30,7 @@ class StaticWire extends Process {
     {
         $this->convertToHtml($page);
         foreach ($page->children as $child) {
-            $this->convertToHtml($child);
+            $this->iteratePagetree($child);
         }
     }
 
