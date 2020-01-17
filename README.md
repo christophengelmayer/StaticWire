@@ -51,7 +51,6 @@ To handle assets and uploads you have multiple options:
 Currently this module has the following limitations:
 
 *  Render pages that use pagination (other than the first page)
-*  Handling redirects
 
 ## Alternatives
 

@@ -42,12 +42,26 @@ class StaticWire extends Process {
         if($this->config->cli) echo $page->url . "\n";
     }
 
+    public function handleRedirectHook($event)
+    {
+            $event->replace = true;
+            $url = $event->arguments('url');
+             echo '<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="refresh" content="0; url='.$url.'">
+        <script type="text/javascript">window.location.href = "'.$url.'"</script>
+        <title>Redirect</title>
+    </head>
+    <body></body>
+</html>';
+    }
+
     public function build($selector = '/')
     {
         // Prevent early exit by catching redirects
-        $this->wire->addHookBefore('Session::redirect', function($event) {
-            $event->replace = true;
-        });
+        $this->wire->addHookBefore('Session::redirect', 'handleRedirectHook');
 
         foreach ($this->languages as $language) {
             $this->languages->setLanguage($language);
