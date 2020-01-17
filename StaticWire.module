@@ -1,0 +1,46 @@
+<?php 
+namespace ProcessWire;
+
+class StaticWire extends WireData implements Module {
+
+    public $rootPath = './static';
+
+    public static function getModuleInfo()
+    {
+        return [
+            'title' => 'StaticWire',
+            'summary' => 'A static site builder for ProcessWire.',
+            'version' => 1
+        ];
+    }
+
+    protected function iteratePagetree($page, $callback)
+    {
+        if (is_callable($callback)) {
+            call_user_func($callback, $page);
+        }
+        foreach ($page->children as $child) {
+            $this->iteratePagetree($child, $callback);
+        }
+    }
+
+    protected function makeStatic($page)
+    {
+        $path = $this->rootPath . $page->url;
+        if(!is_dir($path)) mkdir($path, 0700);
+        file_put_contents($path."index.html", $page->render());
+    }
+
+    public function build($selector = '/', $debug = false)
+    {
+        $this->iteratePagetree(wire('pages')->get($selector), function ($page) use ($debug) {
+            $path = $this->rootPath . $page->url;
+            if(!is_dir($path)){
+                mkdir($path, 0700);
+            }
+            file_put_contents($path."index.html", $page->render());
+            if($debug) echo $page->url . "\n";
+        });
+    }
+
+}
