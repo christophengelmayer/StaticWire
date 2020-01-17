@@ -46,7 +46,7 @@ class StaticWire extends Process {
     {
             $event->replace = true;
             $url = $event->arguments('url');
-             echo '<!DOCTYPE HTML>
+            echo '<!DOCTYPE HTML>
 <html>
     <head>
         <meta charset="UTF-8">
