@@ -44,6 +44,11 @@ class StaticWire extends Process {
 
     public function build($selector = '/')
     {
+        // Prevent early exit by catching redirects
+        $this->wire->addHookBefore('Session::redirect', function($event) {
+            $event->replace = true;
+        });
+
         foreach ($this->languages as $language) {
             $this->languages->setLanguage($language);
             $this->iteratePagetree($this->wire('pages')->get($selector));
