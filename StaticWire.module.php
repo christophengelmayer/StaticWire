@@ -26,34 +26,25 @@ class StaticWire extends Process {
         $this->session->redirect('../'); 
     }
 
-    protected function iteratePagetree($page, $callback)
+    protected function iteratePagetree($page)
     {
-        if (is_callable($callback)) {
-            call_user_func($callback, $page);
-        }
+        $this->convertToHtml($page);
         foreach ($page->children as $child) {
-            $this->iteratePagetree($child, $callback);
+            $this->convertToHtml($child);
         }
     }
 
-    protected function makeStatic($page)
+    protected function convertToHtml($page)
     {
-        $path = $this->rootPath . $page->url;
-        if(!is_dir($path)) mkdir($path, 0700);
+        $path = $this->getBuildPath() . $page->url;
+        if(!is_dir($path)) mkdir($path, 0700, true);
         file_put_contents($path."index.html", $page->render());
+        if($this->config->cli) echo $page->url . "\n";
     }
 
-    public function build($selector = '/', $debug = false)
+    public function build($selector = '/')
     {
-        $this->iteratePagetree($this->wire('pages')->get($selector), function ($page) use ($debug) {
-            $path = $this->getBuildPath() . $page->url;
-            if(!is_dir($path)){
-                mkdir($path, 0700, true);
-            } else {
-            }
-            file_put_contents($path."index.html", $page->render());
-            if($debug) echo $page->url . "\n";
-        });
+        $this->iteratePagetree($this->wire('pages')->get($selector));
     }
 
     public function getBuildPath()
