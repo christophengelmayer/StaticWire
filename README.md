@@ -5,7 +5,7 @@ Useful in CI/CD scripts or to use ProcessWire as a simple static site generator.
 
 ## Installation
 
-Install via the ProcessWire modules directory. See [Instructions](https://modules.processwire.com/install-uninstall/)
+Install via the ProcessWire modules directory. See [Instructions](https://modules.processwire.com/install-uninstall/).
 
 ## Configuration
 
@@ -50,6 +50,8 @@ To handle assets and uploads you have multiple options:
 
 * [ ] Handle pages using pagination
 * [ ] Handle templates using `$session->redirect()`
+* [ ] Remove frontend editing links from output
+
 * [ ] Remove frontend editing links from output
 
 ## Alternatives
