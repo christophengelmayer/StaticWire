@@ -19,5 +19,5 @@ class StaticWireConfig extends ModuleConfig {
 			],
 		]); 
 	}
-}
 
+}

@@ -58,4 +58,5 @@ class StaticWire extends Process {
     {
         return $this->config->paths->root . $this->rootPath;
     }
+
 }
