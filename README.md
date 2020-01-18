@@ -46,12 +46,12 @@ To handle assets and uploads you have multiple options:
 * copy them in your CI/CD script
 * Symlink them if the static site and your ProcessWire installation are running on the same webserver
 
-### Limitations
+## Roadmap 
 
-Currently this module has the following limitations:
-
-*  Render pages that use pagination (other than the first page)
+* [ ] Handle pages using pagination
+* [ ] Handle templates using `$session->redirect()`
+* [ ] Remove frontend editing links from output
 
 ## Alternatives
 
-If you need a much more advanced solution please have a look at [Ryan Cramer](http://directory.processwire.com/developers/ryan-cramer/)s wonderful [ProCache](https://modules.processwire.com/modules/pro-cache/) module.
+If you need a more advanced solution please have a look at [Ryan Cramer](http://directory.processwire.com/developers/ryan-cramer/)s wonderful [ProCache](https://modules.processwire.com/modules/pro-cache/) module.
