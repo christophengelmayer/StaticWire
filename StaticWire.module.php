@@ -39,7 +39,15 @@ class StaticWire extends Process {
     protected function export(string $selector = 'include=hidden')
     {
         $exporter = new HtmlExporter($selector, $this->getOutputPath());
+
+        // Replace $session->redirect() in templates
+        $redirectHook = $this->wire->addHookBefore('Session::redirect', function ($event) {
+            $event->replace = true;
+        });
+
         $exporter->run();
+
+        $this->wire->removeHook($redirectHook);
     }
 
     protected function getOutputPath()

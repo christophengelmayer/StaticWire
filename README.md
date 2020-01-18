@@ -49,7 +49,6 @@ To handle assets and uploads you have multiple options:
 ## Roadmap 
 
 * [ ] Supprt paginated templates
-* [ ] Support for templates that use `$session->redirect()`
 * [ ] Download static site as *.zip archive
 
 ## Alternatives
