@@ -23,24 +23,11 @@ class StaticWire extends Process {
     {
         $currentUser = $this->users->getCurrentUser();
         $this->users->setCurrentUser($this->users->getGuestUser());
-
         $this->export();
-
         $this->users->setCurrentUser($currentUser);
 
         $this->message('HTML files generated in '. $this->getOutputPath()); 
         $this->session->redirect('../'); 
-    }
-
-    public function test()
-    {
-        $currentUser = $this->users->getCurrentUser();
-        $this->users->setCurrentUser($this->users->getGuestUser());
-        $pages = $this->pages->find('include=hidden');
-        foreach($pages as $page) {
-            $this->message($page->url); 
-        }
-        $this->users->setCurrentUser($currentUser);
     }
 
     public function cliCommand()
@@ -59,4 +46,5 @@ class StaticWire extends Process {
     {
         return $this->config->paths->root . $this->rootPath;
     }
+
 }
