@@ -48,11 +48,8 @@ To handle assets and uploads you have multiple options:
 
 ## Roadmap 
 
-* [ ] Handle pages using pagination
-* [ ] Handle templates using `$session->redirect()`
-* [ ] Remove frontend editing links from output
-
-* [ ] Remove frontend editing links from output
+* [ ] Supprt paginated templates
+* [ ] Support for templates that use `$session->redirect()`
 
 ## Alternatives
 

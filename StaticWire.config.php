@@ -1,5 +1,4 @@
 <?php
-
 namespace StaticWire;
 
 use ProcessWire\ModuleConfig;

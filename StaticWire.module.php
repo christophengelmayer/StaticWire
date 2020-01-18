@@ -12,7 +12,7 @@ class StaticWire extends Process {
 		$f->value = $this->_('Generate');
 		$f->icon = 'code';
         $f->href = "./generate/"; 
-		$f->description = $this->_('Path: ') . $this->getBuildPath();
+		$f->description = $this->_('Path: ') . $this->getOutputPath();
         $f->notes = $this->_('or run "php site/modules/StaticWire/cli.php" in your ProcessWire root directory');
         $form->add($f);
 
@@ -21,42 +21,42 @@ class StaticWire extends Process {
 
     public function ___executeGenerate()
     {
-        $this->build();
-        $this->message('HTML files generated in '. $this->getBuildPath()); 
+        $currentUser = $this->users->getCurrentUser();
+        $this->users->setCurrentUser($this->users->getGuestUser());
+
+        $this->export();
+
+        $this->users->setCurrentUser($currentUser);
+
+        $this->message('HTML files generated in '. $this->getOutputPath()); 
         $this->session->redirect('../'); 
     }
 
-    protected function iteratePagetree($page)
+    public function test()
     {
-        $this->convertToHtml($page);
-        foreach ($page->children('include=hidden,template!=admin') as $child) {
-            $this->iteratePagetree($child);
+        $currentUser = $this->users->getCurrentUser();
+        $this->users->setCurrentUser($this->users->getGuestUser());
+        $pages = $this->pages->find('include=hidden');
+        foreach($pages as $page) {
+            $this->message($page->url); 
         }
+        $this->users->setCurrentUser($currentUser);
     }
 
-    protected function convertToHtml($page)
+    public function cliCommand()
     {
-        $path = $this->getBuildPath() . $page->url;
-        if(!is_dir($path)) mkdir($path, 0700, true);
-        file_put_contents($path."index.html", $page->render());
-        if($this->config->cli) echo $page->url . "\n";
+        echo "Exporting static site to: " . $this->getOutputPath() . "\n";
+        $this->export();
     }
 
-    public function build($selector = '/')
+    protected function export(string $selector = 'include=hidden')
     {
-        if($this->languages !== Null) {
-            foreach ($this->languages as $language) {
-                $this->languages->setLanguage($language);
-                $this->iteratePagetree($this->wire('pages')->get($selector));
-            }
-        } else {
-            $this->iteratePagetree($this->wire('pages')->get($selector));
-        }
+        $exporter = new HtmlExporter($selector, $this->getOutputPath());
+        $exporter->run();
     }
 
-    public function getBuildPath()
+    protected function getOutputPath()
     {
         return $this->config->paths->root . $this->rootPath;
     }
-
 }
