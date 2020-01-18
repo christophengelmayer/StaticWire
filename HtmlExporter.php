@@ -35,10 +35,12 @@ class HtmlExporter extends Wire {
 
     protected function convertPage($page)
     {
-        $path = $this->outputPath . $page->url;
-        if(!is_dir($path)) mkdir($path, 0700, true);
-        file_put_contents($path."index.html", $page->render());
-        if($this->config->cli) echo $page->url . "\n";
+        if($page->template->filenameExists()){
+            $path = $this->outputPath . $page->url;
+            if(!is_dir($path)) mkdir($path, 0700, true);
+            file_put_contents($path."index.html", $page->render());
+            if($this->config->cli) echo $page->url . "\n";
+        }
     }
 
 }
