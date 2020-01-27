@@ -1,5 +1,5 @@
 <?php
-namespace StaticWire;
+namespace ProcessWire;
 
 include(getcwd() . '/index.php');
 

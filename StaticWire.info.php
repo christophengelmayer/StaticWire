@@ -3,7 +3,7 @@
 $info = [
 	'title' => 'StaticWire',
 	'summary' => 'Covert pages to HTML files via CLI or ProcessWire admin.',
-	'version' => 4,
+	'version' => 5,
 	'author' => 'Christoph Engelmayer', 
 	'icon' => 'code', 
 	'permission' => 'staticwire-generate', 
