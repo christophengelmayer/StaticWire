@@ -1,7 +1,7 @@
 # StaticWire
 
-Module for [ProcessWire](https://processwire.com/) that coverts pages to static HTML files via CLI or the admin interface.
-Useful in CI/CD scripts or to use ProcessWire as a simple static site generator.
+[ProcessWire](https://processwire.com/) Module that coverts pages to static HTML files via CLI or the admin interface.
+Useful in CI/CD scripts or to use ProcessWire as a static site generator.
 
 ## Installation
 
@@ -9,7 +9,7 @@ Install via the ProcessWire modules directory. See [Instructions](https://module
 
 ## Configuration
 
-The module has a configuration option ("**Static file path**\") for the directory in which the static HTML files and folders are generated. The path is relative to the root directory of your installation. *(default: `/static`)*
+The configuration option ("**Static file path**\") defines the directory in which the static HTML files and folders are generated. The path is relative to the root directory of your ProcessWire installation. *(default: `/static`)*
 
 ## Usage
 
@@ -17,7 +17,7 @@ The module has a configuration option ("**Static file path**\") for the director
 
 Navigate to the root folder of your website:
 
-    cd /your/website
+    cd /var/www/mysite
 
 Run the script
 
@@ -25,7 +25,7 @@ Run the script
 
 ### via admin interface
 
-After installing, go to Setup > Static Site Generator and click the "Generate" button.
+Go to Setup > Static Site Generator and click the "Generate" button.
 
 Users need the `staticwire-generate` permission in order to run StaticWire.
 
@@ -42,9 +42,9 @@ To generate the static HTML structure the `$page->render()` function is called o
 
 To handle assets and uploads you have multiple options:
 
-* copy the folders (`/site/assets/files`, `site/templates/style`, `site/templates/scripts`, etc.) per hand
+* copy the folders (`site/assets/files`, `site/templates/style`, `site/templates/scripts`, etc.) to the output directory (`static/`)
 * copy them in your CI/CD script
-* Symlink them if the static site and your ProcessWire installation are running on the same webserver
+* create symlinks if the static site and your ProcessWire installation are running on the same server
 
 ## Roadmap 
 
@@ -53,4 +53,4 @@ To handle assets and uploads you have multiple options:
 
 ## Alternatives
 
-If you need a more advanced solution please have a look at [Ryan Cramer](http://directory.processwire.com/developers/ryan-cramer/)s wonderful [ProCache](https://modules.processwire.com/modules/pro-cache/) module.
+If you need a more advanced solution please have a look at [Ryan Cramers](http://directory.processwire.com/developers/ryan-cramer/) wonderful [ProCache](https://modules.processwire.com/modules/pro-cache/) module.
