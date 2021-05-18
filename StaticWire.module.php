@@ -1,5 +1,4 @@
 <?php 
-namespace ProcessWire;
 
 use ProcessWire\Process;
 
@@ -38,6 +37,7 @@ class StaticWire extends Process {
 
     protected function export(string $selector = 'include=hidden')
     {
+        require_once(__DIR__.'/HtmlExporter.php');
         $exporter = new HtmlExporter($selector, $this->getOutputPath());
 
         // Replace $session->redirect() in templates

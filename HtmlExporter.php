@@ -1,5 +1,4 @@
 <?php 
-namespace ProcessWire;
 
 use ProcessWire\Wire;
 use ProcessWire\PageArray;

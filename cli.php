@@ -1,5 +1,4 @@
 <?php
-namespace ProcessWire;
 
 include(getcwd() . '/index.php');
 
