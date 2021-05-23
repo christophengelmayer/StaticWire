@@ -1,6 +1,6 @@
 # StaticWire
 
-[ProcessWire](https://processwire.com/) Module that coverts pages to static HTML files via CLI or the admin interface.
+[ProcessWire](https://processwire.com/) Module that converts pages to static HTML files via CLI or the admin interface.
 Useful in CI/CD scripts or to use ProcessWire as a static site generator.
 
 ## Installation
